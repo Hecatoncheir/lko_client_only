@@ -1,0 +1,118 @@
+<div class="request-in-progress"
+     [hidden]="!showRequestInProgress">
+    <material-progress [indeterminate]="true"></material-progress>
+</div>
+
+<!-- Если задач для отображения нет -->
+<div *ngIf="tableData.isEmpty" [hidden]="showRequestInProgress"
+     class="info user-has-no-tasks">
+    <glyph icon="warning"></glyph>
+    <p>Задач нет.</p>
+</div>
+
+<!-- Разметка для устройств с не большим экраном -->
+<section class="small-screen" *ngIf="screenSize=='small'">
+    <div class="days">
+        <div class="day" *ngFor="let date of tableData.keys">
+            <div class="type" *ngFor="let type of typesOfTasks;">
+                <div *ngIf="type == 'УТРО'">
+                    <tasks-of-type-for-day [direction]="'column'"
+                                           [callingNumber]="clientNumberForCalling"
+                                           (callingNumberChange)="clientNumberForCalling=$event"
+                                           [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                           (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                           [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                </div>
+                <div *ngIf="type == 'ДЕНЬ'">
+                    <tasks-of-type-for-day [direction]="'column'"
+                                           [callingNumber]="clientNumberForCalling"
+                                           (callingNumberChange)="clientNumberForCalling=$event"
+                                           [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                           (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                           [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                </div>
+                <div *ngIf="type == 'ДОП'">
+                    <tasks-of-type-for-day [direction]="'column'"
+                                           [callingNumber]="clientNumberForCalling"
+                                           (callingNumberChange)="clientNumberForCalling=$event"
+                                           [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                           (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                           [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                </div>
+                <div *ngIf="type == 'АВАРИЯ'">
+                    <tasks-of-type-for-day [direction]="'column'"
+                                           [callingNumber]="clientNumberForCalling"
+                                           (callingNumberChange)="clientNumberForCalling=$event"
+                                           [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                           (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                           [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Разметка для устройств с большим экраном -->
+<section class="middle-screen" *ngIf="screenSize=='middle'">
+    <div class="days">
+        <header>
+            <div class="days-header"></div>
+            <span class="date-header">Дата</span>
+        </header>
+        <div class="day" *ngFor="let date of tableData.keys">
+            <div class="day-date">
+                <strong>{{tableData[date]['dayOfTheweek']}}</strong>
+                <br>
+                {{date}}
+            </div>
+            <div class="day-tasks">
+                <header class="day-header">
+                    <div class="field"></div>
+                    <div class="field">Телефоны</div>
+                    <div class="field">Адрес клиента</div>
+                    <div class="field">Номер договора</div>
+                    <div class="field">Контрагент</div>
+                    <div class="field"></div>
+                </header>
+                <div class="type" *ngFor="let type of typesOfTasks;">
+                    <div *ngIf="type == 'УТРО'">
+                        <tasks-of-type-for-day [direction]="'row'"
+                                               [type]="type"
+                                               [callingNumber]="clientNumberForCalling"
+                                               (callingNumberChange)="clientNumberForCalling=$event"
+                                               [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                               (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                               [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                    </div>
+                    <div *ngIf="type == 'ДЕНЬ'">
+                        <tasks-of-type-for-day [direction]="'row'"
+                                               [type]="type"
+                                               [callingNumber]="clientNumberForCalling"
+                                               (callingNumberChange)="clientNumberForCalling=$event"
+                                               [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                               (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                               [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                    </div>
+                    <div *ngIf="type == 'ДОП'">
+                        <tasks-of-type-for-day [direction]="'row'"
+                                               [type]="type"
+                                               [callingNumber]="clientNumberForCalling"
+                                               (callingNumberChange)="clientNumberForCalling=$event"
+                                               [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                               (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                               [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                    </div>
+                    <div *ngIf="type == 'АВАРИЯ'">
+                        <tasks-of-type-for-day [direction]="'row'"
+                                               [type]="type"
+                                               [callingNumber]="clientNumberForCalling"
+                                               (callingNumberChange)="clientNumberForCalling=$event"
+                                               [taskNumberForPhoneCalling]="taskNumberForPhoneCalling"
+                                               (taskNumberForPhoneCallingChange)="taskNumberForPhoneCalling=$event"
+                                               [tasks]="tableData[date]['tasks'][type]"></tasks-of-type-for-day>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

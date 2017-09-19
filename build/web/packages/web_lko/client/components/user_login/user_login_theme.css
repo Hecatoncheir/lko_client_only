@@ -1,0 +1,55 @@
+section {
+    padding: 3%;
+    background-color: #fff;
+}
+
+material-input {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    color: #000;
+}
+
+material-button {
+    width: 80%;
+    display: block;
+    margin: 0 auto !important;
+}
+
+material-button glyph {
+    margin-right: 3%;
+}
+
+material-button[disabled] {
+    background-color: #EFEFEF;
+}
+
+.start-auth {
+    background-color: #D6E238;
+    color: #02000A;
+}
+
+.alert {
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-danger {
+    background-color: #fcf8e3;
+    border-color: #faf2cc;
+    color: #8a6d3b;
+
+    text-align: center;
+    margin-top: 10px;
+}
+
+.error {
+    padding: .75rem 1.25rem;
+    border-radius: .25rem;
+    background: #fe6363;
+    color: #fff;
+
+    text-align: center;
+}

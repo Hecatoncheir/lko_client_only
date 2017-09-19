@@ -1,0 +1,209 @@
+<!-- Подтверждение переноса задачи -->
+<modal [visible]="showTaskUpdateDialog">
+    <material-dialog class="basic-dialog alert-danger">
+
+        <form #taskUpdateForm="ngForm">
+            <div header class="dialog-header">
+                <glyph icon="warning"></glyph>
+                <p style="font-size: 0.6em">Перенос задачи: <strong>№{{selectedTask}}</strong> нельзя будет прервать.
+                </p>
+            </div>
+
+            <material-input multiline
+                            style="font-size: 1.6em"
+                            floatingLabel
+                            rows="9"
+                            maxRows="12"
+                            [(ngModel)]="taskUpdateComment"
+                            requiredErrorMsg="Должна быть указана причина переноса задачи."
+                            label="Комментарий"
+                            ngControl="taskUpdateComment"
+                            required></material-input>
+
+            <footer>
+
+                <div [hidden]="!taskUpdateForm.form.valid" class="alert alert-danger">
+                    <material-button autoFocus
+                                     clear-size
+                                     (trigger)="showTaskUpdateDialog = !showTaskUpdateDialog"
+                                     (click)="updateTask(selectedTask, taskUpdateComment)"
+                                     class="confirm">
+                        Перенести
+                    </material-button>
+                </div>
+
+                <material-button autoFocus
+                                 clear-size
+                                 (trigger)="showTaskUpdateDialog = !showTaskUpdateDialog;
+                                            taskUpdateComment = null"
+                                 class="cancel">
+                    Отмена
+                </material-button>
+            </footer>
+        </form>
+
+    </material-dialog>
+</modal>
+
+<!-- Подтверждение выполнения задачи -->
+<modal [visible]="showTaskCancelDialog">
+    <material-dialog class="basic-dialog alert-danger">
+
+        <div header class="dialog-header">
+            <glyph icon="warning"></glyph>
+            <p style="font-size: 0.6em">Закрытие задачи: <strong>№{{selectedTask}}</strong> нельзя будет прервать.</p>
+        </div>
+
+        <footer>
+            <material-button autoFocus
+                             clear-size
+                             (trigger)="showTaskCancelDialog = false"
+                             (click)="cancelTask(selectedTask)"
+                             class="confirm">
+                Выполнить
+            </material-button>
+            <material-button autoFocus
+                             clear-size
+                             (trigger)="showTaskCancelDialog = false"
+                             class="cancel">
+                Отмена
+            </material-button>
+        </footer>
+
+    </material-dialog>
+</modal>
+
+<!-- For small size screen -->
+<section *ngIf="direction=='column'">
+    <div class="task mdl-shadow--6dp"
+         *ngFor="let task of tasks"
+         [ngClass]="classes[task['_tasknumber']]['status']"
+         [attr.task]="task['_tasknumber']">
+        <div class="field">
+            <div class="field-name">Дата</div>
+            <div class="field-value">
+                <strong>{{task['_data']}}</strong>
+            </div>
+        </div>
+        <div class="field">
+            <div class="field-name">
+                <strong>{{task['_dayoftheweek']}}</strong>
+            </div>
+            <div class="field-value">
+                <strong>{{task['_partoftheday']}}</strong>
+            </div>
+        </div>
+        <div class="field">
+            <div class="field-name">
+                <strong>Телефоны</strong>
+            </div>
+            <div class="field-value phones">
+                <div *ngFor="let phone of task['_phonenumbers']"
+                     class="phone-number"
+                     [ngClass]="classes[task['_tasknumber']]['phones'][phone['_phonenumber']]">
+                    <material-progress [indeterminate]="true"
+                                       class="in-progress"></material-progress>
+                    <material-button (click)="callRequest($event, phone['_phonenumber'], task['_tasknumber'])"
+                                     class="button button-green">
+                        {{phone["_phonenumber"]}}
+                    </material-button>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="field-name">
+                <strong>Адрес клиента</strong>
+            </div>
+            <div class="field-value">{{task['_address']}}</div>
+        </div>
+        <div class="field">
+            <div class="field-name">Номер договора</div>
+            <div class="field-value">{{task['_contractnumber']}}</div>
+        </div>
+        <div class="field">
+            <div class="field-name">Контрагент</div>
+            <div class="field-value">{{task['_customernumber']}} {{task['_customername']}}</div>
+        </div>
+        <div class="field actions">
+            <div class="action">
+                <material-progress [indeterminate]="true"
+                                   class="update-task-progress"></material-progress>
+                <!-- При нажатии на кнопку "Перенести" вызывается метод updateTask(String taskId)-->
+                <material-button class="task-time-change-button"
+                                 (trigger)="showTaskUpdateDialog = true;
+                                            selectedTask= task['_tasknumber']"
+                                 [disabled]="showTaskUpdateDialog">Перенести
+                </material-button>
+            </div>
+
+            <div class="action">
+                <material-progress [indeterminate]="true"
+                                   class="cancel-task-progress"></material-progress>
+                <!-- При нажатии на кнопку "Выполнить" вызывается метод cancelTask(String taskId)-->
+                <material-button class="cancel-task-button"
+                                 (trigger)="showTaskCancelDialog = true;
+                                            selectedTask= task['_tasknumber']"
+                                 [disabled]="showTaskCancelDialog">Выполнить
+                </material-button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- For middle size screen -->
+<section *ngIf="direction=='row'">
+    <div class="task"
+         *ngIf="tasks == null">
+        <div class="field">{{type}}</div>
+        <div class="field"></div>
+        <div class="field"></div>
+        <div class="field"></div>
+        <div class="field"></div>
+        <div class="field"></div>
+    </div>
+
+    <div class="task"
+         *ngFor="let task of tasks"
+         [ngClass]="classes[task['_tasknumber']]['status']"
+         [attr.task]="task['_tasknumber']">
+        <div class="field">{{type}}</div>
+        <div class="field">
+            <div *ngFor="let phone of task['_phonenumbers']"
+                 class="phone-number"
+                 [ngClass]="classes[task['_tasknumber']]['phones'][phone['_phonenumber']]">
+                <material-progress [indeterminate]="true"
+                                   class="in-progress"></material-progress>
+                <material-button (click)="callRequest($event, phone['_phonenumber'], task['_tasknumber'])"
+                                 class="button button-green">
+                    {{phone["_phonenumber"]}}
+                </material-button>
+            </div>
+        </div>
+        <div class="field">{{task['_address']}}</div>
+        <div class="field">{{task['_contractnumber']}}</div>
+        <div class="field">{{task['_customernumber']}} {{task['_customername']}}</div>
+        <div class="field actions">
+            <div class="action">
+                <material-progress [indeterminate]="true"
+                                   class="update-task-progress"></material-progress>
+                <!-- При нажатии на кнопку "Перенести" вызывается метод updateTask(String taskId)-->
+                <material-button class="task-time-change-button"
+                                 (trigger)="showTaskUpdateDialog = !showTaskUpdateDialog;
+                                            selectedTask= task['_tasknumber']"
+                                 [disabled]="showTaskUpdateDialog">Перенести
+                </material-button>
+            </div>
+
+            <div class="action">
+                <material-progress [indeterminate]="true"
+                                   class="cancel-task-progress"></material-progress>
+                <!-- При нажатии на кнопку "Выполнить" вызывается метод cancelTask(String taskId)-->
+                <material-button class="cancel-task-button"
+                                 (trigger)="showTaskCancelDialog = !showTaskCancelDialog;
+                                            selectedTask= task['_tasknumber']"
+                                 [disabled]="showTaskCancelDialog">Выполнить
+                </material-button>
+            </div>
+        </div>
+    </div>
+</section>

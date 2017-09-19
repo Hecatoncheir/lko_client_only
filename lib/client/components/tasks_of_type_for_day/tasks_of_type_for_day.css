@@ -1,0 +1,251 @@
+.task {
+    background-color: #fff;
+}
+
+.button-green {
+    background-color: #c0de1a;
+    color: #5a6714;
+    width: 100%;
+}
+
+.button-green:hover {
+    background-color: #67739a !important;
+    color: #fffae4 !important;
+}
+
+.button-disabled {
+    background-color: gray !important;
+    color: #fff !important;
+}
+
+.alert-danger {
+    background-color: #fcf8e3;
+    border-color: #faf2cc;
+    color: #8a6d3b;
+
+    text-align: center;
+}
+
+.basic-dialog {
+    margin: 20px;
+}
+
+.basic-dialog material-button {
+    margin: 10px 0;
+}
+
+.dialog-header {
+    color: #8a6d3b;
+    font-size: 2em !important;
+}
+
+.dialog-header glyph {
+    margin: 10px 0;
+}
+
+.cancel {
+    padding: .45rem 1.05rem;
+    border-radius: .25rem;
+    background: #fe6363;
+    color: #fff;
+
+    text-align: center;
+}
+
+.confirm {
+    padding: .45rem 1.05rem;
+    border-radius: .25rem;
+    background: #dde46c;
+    color: #10365D;
+
+    text-align: center;
+}
+
+/* PHONES */
+
+.phone-number.disabled .button {
+    background-color: gray !important;
+    color: #fff !important;
+}
+
+.phone-number .button {
+    padding: 3px;
+}
+
+.phone-number .in-progress {
+    display: none;
+}
+
+.phone-number.call-in-progress .button {
+    background-color: #EFA828 !important;
+    color: #9E672A !important;
+}
+
+.phone-number.call-in-progress .in-progress {
+    display: block !important;
+}
+
+.phone-number.call-start .button {
+    background-color: #3dc5f9 !important;
+    color: #fffdfb !important;
+}
+
+.phone-number.call-error .button {
+    background-color: #D43028;
+    color: #fff;
+}
+
+.phone-number:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ACTIONS */
+
+.update-error .task-time-change-button,
+.cancel-error .cancel-task-button {
+    background-color: #D43028 !important;
+    color: #fff !important;
+}
+
+.cancel-error {
+    background-color: #F9F7C6
+}
+
+.task-update-in-progress {
+    background-color: #3dc5f9 !important;
+    color: #fffdfb !important;
+}
+
+.action .task-time-change-button,
+.action .cancel-task-button {
+    font-size: 1.1em;
+    background-color: #67739a;
+    color: #fffae4;
+}
+
+.action .task-time-change-button:hover,
+.action .cancel-task-button:hover {
+    background-color: #c0de1a !important;
+    color: #67739a;
+}
+
+.action .update-task-progress,
+.action .cancel-task-progress {
+    display: none;
+    margin-left: 4px;
+}
+
+.update-in-progress .update-task-progress,
+.cancel-in-progress .cancel-task-progress {
+    display: block;
+    background-color: #3dc5f9 !important;
+    color: #fffdfb !important;
+}
+
+/* Small */
+@media screen and (max-width: 600px) {
+    .task {
+        display: flex;
+        flex-direction: column;
+        margin: 13px;
+        border: 1px solid #677392;
+        border-radius: 5px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 30px;
+        padding: 6px 12px;
+        border-bottom: 1px solid rgba(103, 115, 158, 0.15);
+    }
+
+    .field:first-child {
+        background-color: #edeeff;
+        color: #67739e;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .field-name {
+        max-width: 45%;
+    }
+
+    .field-value {
+        max-width: 50%;
+        word-break: break-all;
+    }
+
+    .actions {
+        margin-left: -6px;
+    }
+
+    .actions .action {
+        width: 49%;
+    }
+
+    .actions .action material-button {
+        width: 100%;
+    }
+
+    /* PHONES */
+    .phones {
+        width: 100% !important;
+    }
+
+    .phone-number {
+        margin-bottom: 10px !important;
+    }
+
+    .phone-number .in-progress {
+        margin-left: 4px;
+    }
+}
+
+/* Middle */
+@media screen and (min-width: 600px) {
+    .task {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        border-bottom: 1px solid #EAEAEA;
+        padding: 1%;
+        min-height: 3%;
+    }
+
+    .field {
+        min-width: 150px;
+        flex-basis: 0;
+        flex-grow: 1;
+        align-self: center;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    /* PHONES */
+    .phones {
+        width: 60%;
+    }
+
+    .phone-number {
+        width: 100%;
+        margin-bottom: 10px !important;
+    }
+
+    .phone-number .button {
+        margin: 0 !important;
+    }
+
+    /* ACTIONS */
+    .action {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .action .task-time-change-button,
+    .action .cancel-task-button {
+        width: 100%;
+        /*background: #384777;*/
+    }
+}

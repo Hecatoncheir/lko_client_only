@@ -1,0 +1,4 @@
+library asset_angular_components_lib_src_components_material_yes_no_buttons_material_yes_no_buttons.scss.css.dart;
+
+
+const List<dynamic> styles = const ['/*\n * Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file\n * for details. All rights reserved. Use of this source code is governed by a\n * BSD-style license that can be found in the LICENSE file.\n */\n:host{display:flex}.btn.btn-yes,.btn.btn-no{height:36px;margin:0 4px;min-width:88px}.btn:not([disabled]).highlighted[raised]{background-color:#4285f4;color:#fff}.btn:not([disabled]).highlighted:not([raised]){color:#4285f4}.spinner{align-items:center;display:flex;margin-right:24px;min-width:176px}:host(.no-margin) .btn{margin:0;min-width:0;padding:0}:host(.no-margin) .btn .content{padding-right:0}:host[reverse]{flex-direction:row-reverse}:host[reverse] .spinner{justify-content:flex-end}:host[dense] .btn.btn-yes,:host[dense] .btn.btn-no{height:32px;font-size:13px}\n\n'];

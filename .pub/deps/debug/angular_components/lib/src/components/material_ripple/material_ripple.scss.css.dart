@@ -1,0 +1,4 @@
+library asset_angular_components_lib_src_components_material_ripple_material_ripple.scss.css.dart;
+
+
+const List<dynamic> styles = const ['/*\n * Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file\n * for details. All rights reserved. Use of this source code is governed by a\n * BSD-style license that can be found in the LICENSE file.\n */\nmaterial-ripple{display:block;position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;border-radius:inherit;contain:strict;transform:translateX(0)}.__acx-ripple{position:absolute;width:256px;height:256px;background-color:currentColor;border-radius:50%;pointer-events:none;will-change:opacity, transform;opacity:0}.__acx-ripple.fallback{animation:__acx-ripple 436ms linear;transform:translateZ(0)}@keyframes __acx-ripple{from{opacity:0;transform:translateZ(0) scale(.125)}20%,40%{opacity:.14}to{opacity:0;transform:translateZ(0) scale(4)}}\n\n'];

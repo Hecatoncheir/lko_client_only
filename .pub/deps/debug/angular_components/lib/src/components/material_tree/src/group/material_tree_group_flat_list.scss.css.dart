@@ -1,0 +1,4 @@
+library asset_angular_components_lib_src_components_material_tree_src_group_material_tree_group_flat_list.scss.css.dart;
+
+
+const List<dynamic> styles = const ['/*\n * Copyright (c) 2016, the Dart project authors.  Please see the AUTHORS file\n * for details. All rights reserved. Use of this source code is governed by a\n * BSD-style license that can be found in the LICENSE file.\n */\ndiv{display:block;font-family:inherit;font-size:15px;line-height:32px;padding:0 24px;position:relative;white-space:nowrap}div.disabled{pointer-events:none}div ::ng-deep .material-list-item-primary{color:rgba(0,0,0,0.54);width:40px}div.disabled ::ng-deep .material-list-item-primary{color:rgba(0,0,0,0.38)}div ::ng-deep .material-list-item-secondary{color:rgba(0,0,0,0.54);margin-left:auto}div.disabled ::ng-deep .material-list-item-secondary{color:rgba(0,0,0,0.38)}div ::ng-deep .submenu-icon{transform:rotate(-90deg)}\n\n'];

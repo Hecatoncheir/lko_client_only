@@ -1,0 +1,54 @@
+<section *ngIf="showForm">
+  <div header>
+    <form (ngSubmit)="authenticate()" #userForm="ngForm">
+      <div [hidden]="!showError" class="error">
+        <glyph icon="error"></glyph>
+        <p>Пользователь не может быть авторизован.</p>
+      </div>
+      <br>
+      <div class="form-group">
+        <material-input type="text"
+                        floatingLabel
+                        required
+                        requiredErrorMsg="Необходимо указать имя пользователя"
+                        #name="ngForm"
+                        ngControl="name"
+                        [(ngModel)]='userName'
+                        label="Имя:"></material-input>
+        <br>
+        <material-input type="password"
+                        floatingLabel
+                        requiredErrorMsg="Необходимо указать пароль"
+                        #password="ngForm"
+                        ngControl="password"
+                        required
+                        [(ngModel)]='userPassword'
+                        label="Пароль:"></material-input>
+        <br>
+        <material-input type="tel"
+                        requiredErrorMsg="Необходимо указать номер телефона. Только цифры: 8xxxxxxxxxx"
+                        #tel="ngForm"
+                        ngControl="tel"
+                        floatingLabel
+                        required
+                        hintText="Только цифры: 8xxxxxxxxxx"
+                        [(ngModel)]='userPhone'
+                        label="Номер мобильного телефона:"></material-input>
+        <div [hidden]="tel.valid" class="alert alert-danger">
+          <glyph icon="warning"></glyph>
+          <p>Необходимо указать номер телефона c которым будет соединен клиент.</p>
+          <p>Пример: <b>87815022940</b></p>
+        </div>
+        <br>
+        <!-- При нажатии вызывается метод компонента authenticate -->
+        <material-button class="start-auth"
+                         [disabled]="!userForm.form.valid"
+                         (click)="authenticate()">
+          <glyph icon="vpn_key"></glyph>
+          Авторизоваться
+        </material-button>
+      </div>
+    </form>
+  </div>
+
+</section>
